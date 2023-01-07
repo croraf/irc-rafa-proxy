@@ -22,7 +22,7 @@ io.on("connection", (socket) => {
       channelName: "#ubuntu",
       author: "croraf",
       text: "dwa",
-      timestamp: Date.now(),
+      timestamp: Date.now() + 1,
     });
   });
 
