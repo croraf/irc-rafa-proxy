@@ -13,9 +13,26 @@ const io = new Server(server, {
 
 io.on("connection", (socket) => {
   console.log("user connected");
-  socket.on("chatMessage", (data) => {
+  socket.on("chat", (data) => {
     console.log("message from user", data);
-    socket.emit("chatMessage", data);
+    socket.emit("chat", data);
+    //test
+    socket.emit("chat", {
+      networkName: "Freenode",
+      channelName: "#ubuntu",
+      author: "croraf",
+      text: "dwa",
+      timestamp: Date.now(),
+    });
+  });
+
+  socket.on("auth", (data) => {
+    console.log("message from user", data);
+    socket.emit("auth", {
+      networkName: data.networkName,
+      //test
+      status: data.networkName === "LiberaChat" ? "authenticated" : "error",
+    });
   });
 
   socket.on("disconnect", () => {
